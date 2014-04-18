@@ -1,0 +1,35 @@
+<h1>Listing skaters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Team</th>
+      <th>Pos</th>
+      <th>Goals</th>
+      <th>Assists</th>
+      <th>Pool member</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @skaters.each do |skater| %>
+      <tr>
+        <td><%= skater.name %></td>
+        <td><%= skater.team %></td>
+        <td><%= skater.pos %></td>
+        <td><%= skater.goals %></td>
+        <td><%= skater.assists %></td>
+        <td><%= skater.pool_member.name %></td>
+        <td><%= link_to 'Show', skater %></td>
+        <td><%= link_to 'Edit', edit_skater_path(skater) %></td>
+        <td><%= link_to 'Destroy', skater, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Skater', new_skater_path %>

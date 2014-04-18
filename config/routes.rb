@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :skaters
+
   resources :pool_members
 
   resources :pools
