@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'leaders/index'
+  post 'leaders/updateSkaters'
 
   resources :skaters
 
