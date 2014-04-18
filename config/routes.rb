@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'leaders/index'
+
   resources :skaters
 
   resources :pool_members
