@@ -12,7 +12,7 @@
   </thead>
 
   <tbody>
-  <% @pool_members.each do |pool_member| %>
+  <% @sorted_pool_members.each do |pool_member| %>
       <tr>
         <td><%= pool_member.name %></td>
         <td><%= pool_member.skaters.sum("goals") %></td>
