@@ -1,0 +1,27 @@
+<h1>Listing pool_members</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Pool</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pool_members.each do |pool_member| %>
+      <tr>
+        <td><%= pool_member.name %></td>
+        <td><%= pool_member.pool.name %></td>
+        <td><%= link_to 'Show', pool_member %></td>
+        <td><%= link_to 'Edit', edit_pool_member_path(pool_member) %></td>
+        <td><%= link_to 'Destroy', pool_member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pool member', new_pool_member_path %>

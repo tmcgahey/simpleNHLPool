@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @pool_member.name %>
+</p>
+
+<p>
+  <strong>Pool:</strong>
+  <%= @pool_member.pool.name %>
+</p>
+
+<%= link_to 'Edit', edit_pool_member_path(@pool_member) %> |
+<%= link_to 'Back', pool_members_path %>
