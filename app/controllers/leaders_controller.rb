@@ -14,9 +14,15 @@ class LeadersController < ApplicationController
 
       @json_response["skaterData"].each do |skater|
         @skater_data = skater["data"].split(/,/)
-        Skater.create(name: @skater_data[2], pos: @skater_data[1],
-                      goals: @skater_data[4], assists: @skater_data[5],
-                      nhl_id: skater["id"], team: team)
+
+        Skater.find_or_create_by(nhl_id: skater["id"]) do |s|
+          s.name = @skater_data[2]
+          s.pos = @skater_data[1]
+          s.goals = @skater_data[4]
+          s.assists = @skater_data[5]
+          s.team = team
+        end
+
       end
     end
 

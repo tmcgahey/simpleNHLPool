@@ -21,7 +21,7 @@
         <td><%= skater.pos %></td>
         <td><%= skater.goals %></td>
         <td><%= skater.assists %></td>
-        <td><%= skater.id %></td>
+        <td><%= skater.pool_member.name if skater.pool_member %></td>
         <td><%= link_to 'Show', skater %></td>
         <td><%= link_to 'Edit', edit_skater_path(skater) %></td>
         <td><%= link_to 'Destroy', skater, method: :delete, data: { confirm: 'Are you sure?' } %></td>
