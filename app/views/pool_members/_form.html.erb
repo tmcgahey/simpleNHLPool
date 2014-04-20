@@ -1,4 +1,4 @@
-<%= form_for(@pool_member) do |f| %>
+<%= form_for [@pool, @pool_member]  do |f| %>
   <% if @pool_member.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@pool_member.errors.count, "error") %> prohibited this pool_member from being saved:</h2>
@@ -14,10 +14,6 @@
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :pool_id %><br>
-    <%= f.collection_select :pool_id, Pool.all, :id, :name %>
   </div>
   <div class="actions">
     <%= f.submit %>

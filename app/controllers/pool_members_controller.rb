@@ -1,10 +1,11 @@
 class PoolMembersController < ApplicationController
+  before_action :set_pool
   before_action :set_pool_member, only: [:show, :edit, :update, :destroy]
 
   # GET /pool_members
   # GET /pool_members.json
   def index
-    @pool_members = Pool.find(params[:pool_id]).pool_members
+    @pool_members = @pool.pool_members
   end
 
   # GET /pool_members/1
@@ -14,7 +15,7 @@ class PoolMembersController < ApplicationController
 
   # GET /pool_members/new
   def new
-    @pool_member = PoolMember.new
+    @pool_member = @pool.pool_members.new
   end
 
   # GET /pool_members/1/edit
@@ -24,11 +25,12 @@ class PoolMembersController < ApplicationController
   # POST /pool_members
   # POST /pool_members.json
   def create
-    @pool_member = PoolMember.new(pool_member_params)
+    @pool = Pool.find(params[:pool_id])
+    @pool_member = @pool.pool_members.new(pool_member_params)
 
     respond_to do |format|
       if @pool_member.save
-        format.html { redirect_to @pool_member, notice: 'Pool member was successfully created.' }
+        format.html { redirect_to pool_pool_members_path, notice: 'Pool member was successfully created.' }
         format.json { render :show, status: :created, location: @pool_member }
       else
         format.html { render :new }
@@ -42,7 +44,7 @@ class PoolMembersController < ApplicationController
   def update
     respond_to do |format|
       if @pool_member.update(pool_member_params)
-        format.html { redirect_to @pool_member, notice: 'Pool member was successfully updated.' }
+        format.html { redirect_to pool_pool_members_path, notice: 'Pool member was successfully updated.' }
         format.json { render :show, status: :ok, location: @pool_member }
       else
         format.html { render :edit }
@@ -56,12 +58,16 @@ class PoolMembersController < ApplicationController
   def destroy
     @pool_member.destroy
     respond_to do |format|
-      format.html { redirect_to pool_members_url }
+      format.html { redirect_to pool_pool_members_url }
       format.json { head :no_content }
     end
   end
 
   private
+    def set_pool
+      @pool = Pool.find(params[:pool_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_pool_member
       @pool_member = PoolMember.find(params[:id])
@@ -69,6 +75,6 @@ class PoolMembersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pool_member_params
-      params.require(:pool_member).permit(:name, :pool_id)
+      params.require(:pool_member).permit(:name)
     end
 end
