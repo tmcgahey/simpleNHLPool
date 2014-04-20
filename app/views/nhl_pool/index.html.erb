@@ -1,0 +1,9 @@
+<h1>NhlPool#index</h1>
+<p id="notice"><%= notice %></p>
+<p>
+  <%= form_tag("search", method: "get") do %>
+    <%= label_tag(:pool, "Enter the pool name:") %>
+    <%= text_field_tag(:pool) %>
+    <%= submit_tag("Search") %>
+  <% end %>
+</p>

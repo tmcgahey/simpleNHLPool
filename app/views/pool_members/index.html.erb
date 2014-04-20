@@ -14,9 +14,9 @@
       <tr>
         <td><%= pool_member.name %></td>
         <td><%= pool_member.pool.name %></td>
-        <td><%= link_to 'Show', pool_member %></td>
-        <td><%= link_to 'Edit', edit_pool_member_path(pool_member) %></td>
-        <td><%= link_to 'Destroy', pool_member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', pool_pool_member_path(pool_member.pool,pool_member) %></td>
+        <td><%= link_to 'Edit', edit_pool_pool_member_path(pool_member.pool,pool_member) %></td>
+        <td><%= link_to 'Destroy', pool_pool_member_path(pool_member.pool,pool_member), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Pool member', new_pool_member_path %>
+<%= link_to 'New Pool member', new_pool_pool_member_path %>

@@ -1,5 +1,6 @@
-<h1>Listing skaters</h1>
+<h1><%= @pool_member.name %></h1>
 
+<h3>Skaters</h3>
 <table>
   <thead>
   <tr>
@@ -27,3 +28,5 @@
 </table>
 
 <br>
+
+<%= link_to "Return to leader board", leaders_path %>

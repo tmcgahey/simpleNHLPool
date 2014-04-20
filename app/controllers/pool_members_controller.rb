@@ -4,7 +4,7 @@ class PoolMembersController < ApplicationController
   # GET /pool_members
   # GET /pool_members.json
   def index
-    @pool_members = PoolMember.all
+    @pool_members = Pool.find(params[:pool_id]).pool_members
   end
 
   # GET /pool_members/1

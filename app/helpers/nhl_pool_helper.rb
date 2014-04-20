@@ -1,0 +1,2 @@
+module NhlPoolHelper
+end

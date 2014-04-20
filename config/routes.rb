@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'nhl_pool/index'
+  get 'nhl_pool/search'
+
   resources :leaders do
     collection do
       post 'updateSkaters'
@@ -8,9 +11,9 @@ Rails.application.routes.draw do
 
   resources :skaters
 
-  resources :pool_members
-
-  resources :pools
+  resources :pools do
+    resources :pool_members
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
