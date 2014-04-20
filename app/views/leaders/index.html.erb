@@ -7,14 +7,13 @@
     <th>Goals</th>
     <th>Assists</th>
     <th>Total</th>
-    <th colspan="3"></th>
   </tr>
   </thead>
 
   <tbody>
   <% @sorted_pool_members.each do |pool_member| %>
       <tr>
-        <td><%= pool_member.name %></td>
+        <td><%= link_to pool_member.name, leader_path(pool_member) %></td>
         <td><%= pool_member.skaters.sum("goals") %></td>
         <td><%= pool_member.skaters.sum("assists") %></td>
         <td><%= pool_member.total_team_points %></td>
@@ -26,5 +25,4 @@
 <br>
 
 <%= button_to 'Update Skater Stats', action: "updateSkaters" %>
-<%= link_to 'New Skater', new_skater_path %>
 

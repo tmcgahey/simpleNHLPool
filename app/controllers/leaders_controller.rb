@@ -26,12 +26,15 @@ class LeadersController < ApplicationController
       end
     end
 
-
     respond_to do |format|
-      format.html { redirect_to leaders_index_path, notice: "Skater data updated" }
+      format.html { redirect_to leaders_path, notice: "Skater data updated" }
       format.json { head :no_content }
     end
 
+  end
+
+  def show
+    @pool_member = PoolMember.find(params[:id])
   end
 
   private

@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  get 'leaders/index'
-  post 'leaders/updateSkaters'
+
+  resources :leaders do
+    collection do
+      post 'updateSkaters'
+    end
+  end
 
   resources :skaters
 

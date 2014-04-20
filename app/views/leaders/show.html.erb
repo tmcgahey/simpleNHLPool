@@ -1,0 +1,29 @@
+<h1>Listing skaters</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Team</th>
+    <th>Pos</th>
+    <th>Goals</th>
+    <th>Assists</th>
+    <th>Total Points</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @pool_member.skaters.each do |skater| %>
+      <tr>
+        <td><%= skater.name %></td>
+        <td><%= skater.team %></td>
+        <td><%= skater.pos %></td>
+        <td><%= skater.goals %></td>
+        <td><%= skater.assists %></td>
+        <td><%= skater.total_points %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
