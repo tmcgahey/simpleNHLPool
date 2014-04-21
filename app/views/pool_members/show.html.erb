@@ -1,14 +1,45 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @pool_member.name %>
-</p>
+<%= content_tag "div", id: "skaters", data: {url: @skaterNames.to_json} do %>
+<% end %>
 
 <p>
   <strong>Pool:</strong>
   <%= @pool_member.pool.name %>
 </p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @pool_member.name %>
+</p>
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Team</th>
+    <th>Pos</th>
+    <th>Goals</th>
+    <th>Assists</th>
+    <th>Pool member</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody id="skaters">
+  <%= render @pool_member.skaters %>
+  </tbody>
+</table>
+
+<%= form_tag("addSkater", method: "post") do %>
+    <div class="field">
+      <%= label_tag :name %><br>
+      <%= text_field_tag :skaterSearch %>
+      <%= hidden_field_tag :skaterId %>
+    </div>
+    <%= submit_tag("Add Skater") %>
+<% end %>
+
 
 <%= link_to 'Edit', edit_pool_pool_member_path(@pool_member.pool,@pool_member) %> |
 <%= link_to 'Back', pool_pool_members_path %>

@@ -11,6 +11,7 @@ class PoolMembersController < ApplicationController
   # GET /pool_members/1
   # GET /pool_members/1.json
   def show
+    @skaterNames = Skater.all.map{|x| {label: x.name, value: x.nhl_id, team: x.team}}
   end
 
   # GET /pool_members/new
@@ -20,6 +21,7 @@ class PoolMembersController < ApplicationController
 
   # GET /pool_members/1/edit
   def edit
+
   end
 
   # POST /pool_members
@@ -61,6 +63,10 @@ class PoolMembersController < ApplicationController
       format.html { redirect_to pool_pool_members_url }
       format.json { head :no_content }
     end
+  end
+
+  def addSkater
+
   end
 
   private

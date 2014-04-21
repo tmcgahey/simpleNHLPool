@@ -12,7 +12,11 @@ Rails.application.routes.draw do
   resources :skaters
 
   resources :pools do
-    resources :pool_members
+    resources :pool_members do
+      collection do
+        post 'addSkater'
+      end
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
