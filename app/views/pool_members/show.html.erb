@@ -22,20 +22,22 @@
     <th>Goals</th>
     <th>Assists</th>
     <th>Pool member</th>
-    <th colspan="3"></th>
+    <th colspan="1"></th>
   </tr>
   </thead>
 
-  <tbody id="skaters">
+  <tbody id="skaterList">
   <%= render @pool_member.skaters %>
   </tbody>
 </table>
 
-<%= form_tag("addSkater", method: "post") do %>
+<%= form_tag("addSkater", method: "post", remote: true) do %>
     <div class="field">
       <%= label_tag :name %><br>
       <%= text_field_tag :skaterSearch %>
-      <%= hidden_field_tag :skaterId %>
+      <%= hidden_field_tag :nhlId %>
+      <%= hidden_field_tag :pool, @pool_member.pool.id %>
+      <%= hidden_field_tag :id, @pool_member.id %>
     </div>
     <%= submit_tag("Add Skater") %>
 <% end %>

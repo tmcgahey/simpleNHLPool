@@ -66,7 +66,27 @@ class PoolMembersController < ApplicationController
   end
 
   def addSkater
+    @pool_member = PoolMember.find(params[:id])
+    @skater = Skater.find_by(nhl_id: params[:nhlId])
 
+    respond_to do |format|
+      if @skater.update(pool_member_id: params[:id])
+        format.html { redirect_to pool_pool_member_path(params[:pool_id],params[:id]), notice: 'Pool member was successfully updated.' }
+        format.js {}
+        format.json { render :show, status: :ok, location: @pool_member }
+      end
+    end
+  end
+
+  def removeSkater
+    @pool_member = PoolMember.find(params[:id])
+    @skater = Skater.find(params[:skaterId])
+
+    respond_to do |format|
+      if @skater.update(pool_member_id: nil)
+        format.js {}
+      end
+    end
   end
 
   private

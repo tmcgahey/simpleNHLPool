@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :pool_members do
       collection do
         post 'addSkater'
+        post 'removeSkater'
       end
     end
   end

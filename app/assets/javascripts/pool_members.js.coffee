@@ -14,7 +14,7 @@ $ ->
     ,
     select: (event,ui) ->
       $('#skaterSearch').val(ui.item.label);
-      $('#skaterId').val(ui.item.value);
+      $('#nhlId').val(ui.item.value);
       return false;
   })
   .data('ui-autocomplete')._renderItem = (ul,item) ->
