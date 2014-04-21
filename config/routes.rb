@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :skaters
+  resources :goalies
 
   resources :pools do
     resources :pool_members do

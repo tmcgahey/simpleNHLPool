@@ -1,0 +1,41 @@
+<%= form_for(@goalie) do |f| %>
+  <% if @goalie.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@goalie.errors.count, "error") %> prohibited this goaly from being saved:</h2>
+
+      <ul>
+      <% @goalie.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :team %><br>
+    <%= f.text_field :team %>
+  </div>
+  <div class="field">
+    <%= f.label :wins %><br>
+    <%= f.text_field :wins %>
+  </div>
+  <div class="field">
+    <%= f.label :so %><br>
+    <%= f.text_field :so %>
+  </div>
+  <div class="field">
+    <%= f.label :pool_member_id %><br>
+    <%= f.collection_select :pool_member_id, PoolMember.all, :id, :name %>
+  </div>
+  <div class="field">
+    <%= f.label :nhl_id %><br>
+    <%= f.text_field :nhl_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
