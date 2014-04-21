@@ -24,6 +24,18 @@ class LeadersController < ApplicationController
         end
 
       end
+
+      @json_response["goalieData"].each do |goalie|
+        @goalie_data = goalie["data"].split(/,/)
+
+        Goalie.find_or_create_by(nhl_id: goalie["id"]) do |g|
+          g.name = @goalie_data[2]
+          g.team = team
+          g.wins = @goalie_data[4]
+          g.so = @goalie_data[12]
+        end
+      end
+
     end
 
     respond_to do |format|

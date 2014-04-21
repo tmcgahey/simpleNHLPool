@@ -11,13 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140418210635) do
+ActiveRecord::Schema.define(version: 20140421033059) do
+
+  create_table "goalies", force: true do |t|
+    t.string   "name"
+    t.string   "team"
+    t.integer  "wins"
+    t.integer  "so"
+    t.integer  "pool_member_id"
+    t.integer  "nhl_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "goalies", ["pool_member_id"], name: "index_goalies_on_pool_member_id"
 
   create_table "pool_members", force: true do |t|
     t.string   "name"
     t.integer  "pool_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "goalie1"
+    t.string   "goalie2"
   end
 
   add_index "pool_members", ["pool_id"], name: "index_pool_members_on_pool_id"
