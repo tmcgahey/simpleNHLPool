@@ -6,6 +6,8 @@
     <th>Name</th>
     <th>Goals</th>
     <th>Assists</th>
+    <th>Wins</th>
+    <th>Shutouts</th>
     <th>Total</th>
   </tr>
   </thead>
@@ -16,6 +18,8 @@
         <td><%= link_to pool_member.name, leader_path(pool_member) %></td>
         <td><%= pool_member.skaters.sum("goals") %></td>
         <td><%= pool_member.skaters.sum("assists") %></td>
+        <td><%= pool_member.goalie.sum("wins") %></td>
+        <td><%= pool_member.goalie.sum("so") %></td>
         <td><%= pool_member.total_team_points %></td>
       </tr>
   <% end %>

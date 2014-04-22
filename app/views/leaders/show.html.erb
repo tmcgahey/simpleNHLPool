@@ -27,6 +27,31 @@
   </tbody>
 </table>
 
+<h3>Goalies</h3>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Team</th>
+    <th>Wins</th>
+    <th>Shutouts</th>
+    <th>Total Points</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @pool_member.goalie.each do |goalie| %>
+    <tr>
+        <td><%= goalie.name %></td>
+        <td><%= goalie.team %></td>
+        <td><%= goalie.wins %></td>
+        <td><%= goalie.so %></td>
+      <td><%= goalie.total_points %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
 <br>
 
 <%= link_to "Return to leader board", leaders_path %>
