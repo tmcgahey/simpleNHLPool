@@ -47,13 +47,15 @@ class PoolMembersController < ApplicationController
     respond_to do |format|
       if @pool_member.update(pool_member_params)
         if @pool_member.goalie1.present?
-          @memberGoalies = Goalie.find_by(team: @pool_member.goalie1)
-          @memberGoalies.update(pool_member_id: params[:id])
+          Goalie.where(team: @pool_member.goalie1).each do |goalie|
+            goalie.update(pool_member_id: params[:id])
+          end
         end
 
         if @pool_member.goalie2.present?
-          @memberGoalies = Goalie.find_by(team: @pool_member.goalie2)
-          @memberGoalies.update(pool_member_id: params[:id])
+          Goalie.where(team: @pool_member.goalie2).each do |goalie|
+            goalie.update(pool_member_id: params[:id])
+          end
         end
 
         format.html { redirect_to pool_pool_members_path, notice: 'Pool member was successfully updated.' }

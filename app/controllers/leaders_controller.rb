@@ -36,6 +36,23 @@ class LeadersController < ApplicationController
         end
       end
 
+      @pool_members = Pool.find(session[:pool_id]).pool_members
+
+      @pool_members.each do |member|
+        if member.goalie1.present?
+          Goalie.where(team: member.goalie1).each do |goalie|
+            goalie.update(pool_member_id: member.id)
+          end
+        end
+
+        if member.goalie2.present?
+          Goalie.where(team: member.goalie2).each do |goalie|
+            goalie.update(pool_member_id: member.id)
+          end
+
+        end
+      end
+
     end
 
     respond_to do |format|
