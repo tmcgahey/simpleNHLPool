@@ -1,41 +1,50 @@
-<%= form_for(@skater) do |f| %>
-  <% if @skater.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@skater.errors.count, "error") %> prohibited this skater from being saved:</h2>
-
-      <ul>
-      <% @skater.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_for @skater, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field' %>
     </div>
-  <% end %>
+  </div>
+  <div class="control-group">
+    <%= f.label :team, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :team, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :pos, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :pos, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :goals, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :goals, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :assists, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :assists, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :pool_member_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :pool_member_id, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :nhl_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :nhl_id, :class => 'text_field' %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :team %><br>
-    <%= f.text_field :team %>
-  </div>
-  <div class="field">
-    <%= f.label :pos %><br>
-    <%= f.text_field :pos %>
-  </div>
-  <div class="field">
-    <%= f.label :goals %><br>
-    <%= f.number_field :goals %>
-  </div>
-  <div class="field">
-    <%= f.label :assists %><br>
-    <%= f.number_field :assists %>
-  </div>
-  <div class="field">
-    <%= f.label :pool_member_id %><br>
-    <%= f.collection_select :pool_member_id, PoolMember.all, :id, :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                skaters_path, :class => 'btn' %>
   </div>
 <% end %>

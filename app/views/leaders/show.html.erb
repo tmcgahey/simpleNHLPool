@@ -1,7 +1,8 @@
 <h1><%= @pool_member.name %></h1>
 
 <h3>Skaters</h3>
-<table>
+<%= link_to "Return to leader board", leaders_path, :class => 'btn btn-mini' %>
+<table class="table table-striped">
   <thead>
   <tr>
     <th>Name</th>
@@ -28,7 +29,7 @@
 </table>
 
 <h3>Goalies</h3>
-<table>
+<table class="table table-striped">
   <thead>
   <tr>
     <th>Name</th>
@@ -52,6 +53,3 @@
   </tbody>
 </table>
 
-<br>
-
-<%= link_to "Return to leader board", leaders_path %>

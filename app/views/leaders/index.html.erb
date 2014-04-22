@@ -1,6 +1,6 @@
 <h1>Leaders</h1>
 <p id="notice"><%= notice %></p>
-<table>
+<table class="table table-striped">
   <thead>
   <tr>
     <th>Name</th>
@@ -9,18 +9,20 @@
     <th>Wins</th>
     <th>Shutouts</th>
     <th>Total</th>
+    <th><%=t '.actions', :default => t("helpers.actions") %></th>
   </tr>
   </thead>
 
   <tbody>
   <% @sorted_pool_members.each do |pool_member| %>
       <tr>
-        <td><%= link_to pool_member.name, leader_path(pool_member) %></td>
+        <td><%= pool_member.name %></td>
         <td><%= pool_member.skaters.sum("goals") %></td>
         <td><%= pool_member.skaters.sum("assists") %></td>
         <td><%= pool_member.goalie.sum("wins") %></td>
         <td><%= pool_member.goalie.sum("so") %></td>
         <td><%= pool_member.total_team_points %></td>
+        <td><%= link_to "Details", leader_path(pool_member), :class => 'btn btn-mini' %></td>
       </tr>
   <% end %>
   </tbody>

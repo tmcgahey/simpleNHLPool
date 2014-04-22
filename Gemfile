@@ -40,4 +40,5 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'rest-client', '~> 1.6.7'
 gem 'jquery-ui-rails'
+gem 'twitter-bootstrap-rails'
 gem 'rails_12factor', group: :production
