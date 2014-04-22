@@ -15,25 +15,26 @@ class LeadersController < ApplicationController
       @json_response["skaterData"].each do |skater|
         @skater_data = skater["data"].split(/,/)
 
-        Skater.find_or_create_by(nhl_id: skater["id"]) do |s|
+        @upsertSkater = Skater.find_or_create_by(nhl_id: skater["id"]) do |s|
           s.name = @skater_data[2]
           s.pos = @skater_data[1]
           s.goals = @skater_data[4]
           s.assists = @skater_data[5]
           s.team = team
         end
-
+        @upsertSkater.update(name: @skater_data[2],pos: @skater_data[1],goals: @skater_data[4],assists: @skater_data[5],team: team)
       end
 
       @json_response["goalieData"].each do |goalie|
         @goalie_data = goalie["data"].split(/,/)
 
-        Goalie.find_or_create_by(nhl_id: goalie["id"]) do |g|
+        @upsertGoalie = Goalie.find_or_create_by(nhl_id: goalie["id"]) do |g|
           g.name = @goalie_data[2]
           g.team = team
           g.wins = @goalie_data[4]
           g.so = @goalie_data[12]
         end
+        @upsertGoalie.update(name: @goalie_data[2], team: team, wins: @goalie_data[4],so: @goalie_data[12])
       end
 
       @pool_members = Pool.find(session[:pool_id]).pool_members
