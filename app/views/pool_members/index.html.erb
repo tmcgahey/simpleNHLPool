@@ -4,7 +4,8 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Pool</th>
+      <th>Goalie 1</th>
+      <th>Goalie 2</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -13,7 +14,8 @@
     <% @pool_members.each do |pool_member| %>
       <tr>
         <td><%= pool_member.name %></td>
-        <td><%= pool_member.pool.name %></td>
+        <td><%= pool_member.goalie1 %></td>
+        <td><%= pool_member.goalie2 %></td>
         <td><%= link_to 'Show', pool_pool_member_path(pool_member.pool,pool_member) %></td>
         <td><%= link_to 'Edit', edit_pool_pool_member_path(pool_member.pool,pool_member) %></td>
         <td><%= link_to 'Destroy', pool_pool_member_path(pool_member.pool,pool_member), method: :delete, data: { confirm: 'Are you sure?' } %></td>

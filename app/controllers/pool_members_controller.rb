@@ -21,7 +21,7 @@ class PoolMembersController < ApplicationController
 
   # GET /pool_members/1/edit
   def edit
-
+    @playoff_teams = playoff_teams.map{ |team| [team, team] }
   end
 
   # POST /pool_members
@@ -46,6 +46,16 @@ class PoolMembersController < ApplicationController
   def update
     respond_to do |format|
       if @pool_member.update(pool_member_params)
+        if @pool_member.goalie1.present?
+          @memberGoalies = Goalie.find_by(team: @pool_member.goalie1)
+          @memberGoalies.update(pool_member_id: params[:id])
+        end
+
+        if @pool_member.goalie2.present?
+          @memberGoalies = Goalie.find_by(team: @pool_member.goalie2)
+          @memberGoalies.update(pool_member_id: params[:id])
+        end
+
         format.html { redirect_to pool_pool_members_path, notice: 'Pool member was successfully updated.' }
         format.json { render :show, status: :ok, location: @pool_member }
       else
@@ -101,6 +111,10 @@ class PoolMembersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pool_member_params
-      params.require(:pool_member).permit(:name)
+      params.require(:pool_member).permit(:name,:goalie1,:goalie2)
+    end
+
+    def playoff_teams
+      @playoff_teams = ["NONE","DAL","ANA","MTL","TBL","DET","BOS","PHI","NYR","CHI","STL","MIN","COL","LAK","SJS","PIT","CBJ"]
     end
 end

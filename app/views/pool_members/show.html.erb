@@ -13,6 +13,7 @@
   <%= @pool_member.name %>
 </p>
 
+<h1>Skaters</h1>
 <table>
   <thead>
   <tr>
@@ -21,7 +22,6 @@
     <th>Pos</th>
     <th>Goals</th>
     <th>Assists</th>
-    <th>Pool member</th>
     <th colspan="1"></th>
   </tr>
   </thead>
@@ -42,6 +42,22 @@
     <%= submit_tag("Add Skater") %>
 <% end %>
 
+<h1>Goalies</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Team</th>
+    <th>Wins</th>
+    <th>Shutouts</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <%= render @pool_member.goalie %>
+  </tbody>
+</table>
 
 <%= link_to 'Edit', edit_pool_pool_member_path(@pool_member.pool,@pool_member) %> |
 <%= link_to 'Back', pool_pool_members_path %>
