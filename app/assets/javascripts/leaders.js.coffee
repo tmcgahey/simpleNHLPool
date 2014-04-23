@@ -14,13 +14,13 @@ $ ->
     "bPaginate": false,
     "bInfo": false,
     "bFilter": false,
-    "aaSorting": [[5, "desc"]],
+    "aaSorting": [[5, "desc"]]
   });
 
   $('#goalieTable').dataTable({
     "bPaginate": false,
     "bInfo": false,
     "bFilter": false,
-    "aaSorting": [[4, "desc"]],
+    "aaSorting": [[4, "desc"]]
   });
 

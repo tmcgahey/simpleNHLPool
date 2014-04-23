@@ -16,6 +16,6 @@ $ ->
       $('#skaterSearch').val(ui.item.label);
       $('#nhlId').val(ui.item.value);
       return false;
-  })
-  .data('ui-autocomplete')._renderItem = (ul,item) ->
-    return $('<li>').append('<a>' + item.label + ' - ' + item.team + '</a>').appendTo(ul);
+  });
+#  .data('ui-autocomplete')._renderItem = (ul,item) ->
+#    return $('<li>').append('<a>' + item.label + ' - ' + item.team + '</a>').appendTo(ul);

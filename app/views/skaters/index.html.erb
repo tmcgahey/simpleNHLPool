@@ -2,45 +2,35 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:team) %></th>
-      <th><%= model_class.human_attribute_name(:pos) %></th>
-      <th><%= model_class.human_attribute_name(:goals) %></th>
-      <th><%= model_class.human_attribute_name(:assists) %></th>
-      <th><%= model_class.human_attribute_name(:pool_member_id) %></th>
-      <th><%= model_class.human_attribute_name(:nhl_id) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @skaters.each do |skater| %>
-      <tr>
-        <td><%= link_to skater.id, skater_path(skater) %></td>
-        <td><%= skater.name %></td>
-        <td><%= skater.team %></td>
-        <td><%= skater.pos %></td>
-        <td><%= skater.goals %></td>
-        <td><%= skater.assists %></td>
-        <td><%= skater.pool_member_id %></td>
-        <td><%= skater.nhl_id %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_skater_path(skater), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      skater_path(skater),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="span12">
+<%= link_to "Return to leader board", leaders_path, :class => 'btn btn-primary' %>
+</div>
+<div class="span10">
+    <table id="allSkatersTable" class="table table-striped">
+      <thead>
+        <tr>
+          <th><%= model_class.human_attribute_name(:name) %></th>
+          <th><%= model_class.human_attribute_name(:team) %></th>
+          <th><%= model_class.human_attribute_name(:pos) %></th>
+          <th><%= model_class.human_attribute_name(:goals) %></th>
+          <th><%= model_class.human_attribute_name(:assists) %></th>
+          <th>Total Points</th>
+          <th><%= model_class.human_attribute_name(:pool_member_id) %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @skaters.each do |skater| %>
+          <tr>
+            <td><%= skater.name %></td>
+            <td><%= skater.team %></td>
+            <td><%= skater.pos %></td>
+            <td><%= skater.goals %></td>
+            <td><%= skater.assists %></td>
+            <td><%= skater.total_points %></td>
+            <td><%= skater.pool_member.name if skater.pool_member %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_skater_path,
-            :class => 'btn btn-primary' %>
