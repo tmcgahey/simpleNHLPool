@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   get 'nhl_pool/index'
   get 'nhl_pool/search'
+  get '/search', controller: 'nhl_pool', action: 'search'
 
   resources :leaders do
     collection do
@@ -25,7 +26,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'nhl_pool#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

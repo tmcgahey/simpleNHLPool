@@ -1,36 +1,39 @@
-<h1>Leaders</h1>
-<p id="notice"><%= notice %></p>
-<table id="leaderTable" class="table table-striped">
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Goals</th>
-    <th>Assists</th>
-    <th>Wins</th>
-    <th>Shutouts</th>
-    <th>Total</th>
-    <th></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @sorted_pool_members.each do |pool_member| %>
+<div class="span8">
+    <h1>Leaders</h1>
+    <p id="notice"><%= notice %></p>
+    <table id="leaderTable" class="table table-striped">
+      <thead>
       <tr>
-        <td><%= pool_member.name %></td>
-        <td><%= pool_member.skaters.sum("goals") %></td>
-        <td><%= pool_member.skaters.sum("assists") %></td>
-        <td><%= pool_member.goalie.sum("wins") %></td>
-        <td><%= pool_member.goalie.sum("so") %></td>
-        <td><%= pool_member.total_team_points %></td>
-        <td><%= link_to "Details", leader_path(pool_member), :class => 'btn btn-mini' %></td>
+        <th>Name</th>
+        <th>Goals</th>
+        <th>Assists</th>
+        <th>Wins</th>
+        <th>Shutouts</th>
+        <th>Total</th>
+        <th></th>
       </tr>
-  <% end %>
-  </tbody>
-</table>
+      </thead>
 
-<br>
+      <tbody>
+      <% @sorted_pool_members.each do |pool_member| %>
+          <tr>
+            <td><%= pool_member.name %></td>
+            <td><%= pool_member.skaters.sum("goals") %></td>
+            <td><%= pool_member.skaters.sum("assists") %></td>
+            <td><%= pool_member.goalie.sum("wins") %></td>
+            <td><%= pool_member.goalie.sum("so") %></td>
+            <td><%= pool_member.total_team_points %></td>
+            <td><%= link_to "Details", leader_path(pool_member), :class => 'btn btn-default' %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+</div>
+<div class="span8">
+  <p>I'll try to make this automatically happen every hour.</p>
+  <%= button_to 'Refresh Player Stats', action: "updateSkaters" %>
+</div>
 
-<p>I'll try to make this automatically happen every hour.</p>
-<%= button_to 'Refresh Player Stats', action: "updateSkaters" %>
+
 
 

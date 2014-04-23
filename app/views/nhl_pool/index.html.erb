@@ -1,9 +1,18 @@
 <h1>NHL Pool</h1>
 <p id="notice"><%= notice %></p>
 <p>
-  <%= form_tag("search", method: "get") do %>
-    <%= label_tag(:pool, "Enter the pool name:") %>
-    <%= text_field_tag(:pool) %>
-    <%= submit_tag("Search") %>
+  <%= form_tag("search", method: "get", :class => 'form-horizontal') do %>
+    <div class="control-group">
+      <%= label_tag(:pool, "Enter the pool name:", :class => 'control-label') %>
+      <div class="controls">
+        <%= text_field_tag(:pool,'', :class => 'text_field') %>
+        <%= submit_tag("Search",:class => 'btn btn-primary') %>
+      </div>
+
+
+    </div>
+
+
+
   <% end %>
 </p>
