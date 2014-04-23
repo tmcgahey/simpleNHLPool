@@ -41,4 +41,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'rest-client', '~> 1.6.7'
 gem 'jquery-ui-rails'
 gem 'twitter-bootstrap-rails'
+gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
 gem 'rails_12factor', group: :production
