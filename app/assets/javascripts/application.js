@@ -16,4 +16,5 @@
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap3
 //= require jquery.ui.all
+//= require google_tracking
 //= require_tree .

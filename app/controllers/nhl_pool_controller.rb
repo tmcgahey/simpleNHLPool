@@ -1,5 +1,6 @@
 class NhlPoolController < ApplicationController
   def index
+    @hideAllStats = true
   end
 
   def search
