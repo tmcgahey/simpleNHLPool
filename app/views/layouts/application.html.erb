@@ -48,9 +48,13 @@
       </a>
       <a class="brand" href="/">NHL Pool</a>
       <div class="container nav-collapse">
-        <ul class="nav">
-          <li><%= link_to "All Skaters Stats", "/skaters"  %></li>
-        </ul>
+        <% if params[:controller] != 'nhl_pool' %>
+            <ul class="nav">
+              <li><%= link_to "Leader Board", leaders_path  %></li>
+              <li><%= link_to "All Skaters Stats", skaters_path  %></li>
+              <li><%= link_to "All Goalie Stats", goalies_path  %></li>
+            </ul>
+        <% end %>
       </div><!--/.nav-collapse -->
     </div>
   </div>

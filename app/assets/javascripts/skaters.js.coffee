@@ -7,5 +7,5 @@ $ ->
     "bPaginate": false,
     "bInfo": false,
     "bFilter": true,
-    "aaSorting": [[0, "desc"]]
+    "aaSorting": [[5, "desc"]]
   });

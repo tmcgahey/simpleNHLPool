@@ -1,11 +1,12 @@
 <div class="page-header">
-  <h1>Leaders</h1>
+  <h1>Leader Board</h1>
 </div>
 <div class="span8">
     <p id="notice"><%= notice %></p>
     <table id="leaderTable" class="table table-striped">
       <thead>
       <tr>
+        <th>Rank</th>
         <th>Name</th>
         <th>Goals</th>
         <th>Assists</th>
@@ -17,8 +18,9 @@
       </thead>
 
       <tbody>
-      <% @sorted_pool_members.each do |pool_member| %>
+      <% @sorted_pool_members.each_with_index do |pool_member,index| %>
           <tr>
+            <td><%= index+1 %></td>
             <td><%= pool_member.name %></td>
             <td><%= pool_member.skaters.sum("goals") %></td>
             <td><%= pool_member.skaters.sum("assists") %></td>

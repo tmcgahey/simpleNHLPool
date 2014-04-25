@@ -4,7 +4,7 @@ $ ->
     "bPaginate": false,
     "bInfo": false,
     "bFilter": false,
-    "aaSorting": [[5, "desc"]],
+    "aaSorting": [[6, "desc"]],
     "aoColumnDefs": [
       {"bSortable": false, "aTargets": [-1]}
     ]
