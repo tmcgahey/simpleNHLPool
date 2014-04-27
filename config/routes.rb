@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :goalies
 
   resources :pools do
+    resources :nhl_teams
     resources :pool_members do
       collection do
         post 'addSkater'

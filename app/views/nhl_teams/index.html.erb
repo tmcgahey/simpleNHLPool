@@ -1,0 +1,40 @@
+<%- model_class = NhlTeam -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:pool_id) %></th>
+      <th><%= model_class.human_attribute_name(:active) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @nhl_teams.each do |nhl_team| %>
+      <tr>
+        <td><%= link_to nhl_team.id, pool_nhl_team_path(nhl_team.pool,nhl_team) %></td>
+        <td><%= nhl_team.name %></td>
+        <td><%= nhl_team.pool_id %></td>
+        <td><%= nhl_team.active %></td>
+        <td><%=l nhl_team.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_pool_nhl_team_path(nhl_team.pool,nhl_team), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      pool_nhl_team_path(nhl_team.pool,nhl_team),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_pool_nhl_team_path,
+            :class => 'btn btn-primary' %>
