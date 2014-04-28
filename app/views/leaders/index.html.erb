@@ -12,6 +12,7 @@
         <th>Assists</th>
         <th>Wins</th>
         <th>Shutouts</th>
+        <th>Players Remaining</th>
         <th>Total</th>
         <th></th>
       </tr>
@@ -26,6 +27,7 @@
             <td><%= pool_member.skaters.sum("assists") %></td>
             <td><%= pool_member.goalie.sum("wins") %></td>
             <td><%= pool_member.goalie.sum("so") %></td>
+            <td><%= pool_member.remaining_players %></td>
             <td><%= pool_member.total_team_points %></td>
             <td><%= link_to "Details", leader_path(pool_member), :class => 'btn btn-default' %></td>
           </tr>
