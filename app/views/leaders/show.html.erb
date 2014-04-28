@@ -18,7 +18,7 @@
 
       <tbody>
       <% @pool_member.skaters.each do |skater| %>
-          <tr>
+          <tr <%= 'class=error' if skater.nhl_team.active == false %>>
             <td><%= skater.name %></td>
             <td><%= skater.team %></td>
             <td><%= skater.pos %></td>
@@ -46,7 +46,7 @@
 
       <tbody>
       <% @pool_member.goalie.each do |goalie| %>
-        <tr>
+        <tr <%= 'class=error' if goalie.nhl_team.active == false %>>
             <td><%= goalie.name %></td>
             <td><%= goalie.team %></td>
             <td><%= goalie.wins %></td>

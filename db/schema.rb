@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140426235245) do
+ActiveRecord::Schema.define(version: 20140427025038) do
 
   create_table "goalies", force: true do |t|
     t.string   "name"
@@ -22,8 +22,10 @@ ActiveRecord::Schema.define(version: 20140426235245) do
     t.integer  "nhl_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "nhl_team_id"
   end
 
+  add_index "goalies", ["nhl_team_id"], name: "index_goalies_on_nhl_team_id"
   add_index "goalies", ["pool_member_id"], name: "index_goalies_on_pool_member_id"
 
   create_table "nhl_teams", force: true do |t|
@@ -61,9 +63,11 @@ ActiveRecord::Schema.define(version: 20140426235245) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "nhl_id"
+    t.integer  "nhl_team_id"
   end
 
   add_index "skaters", ["nhl_id"], name: "index_skaters_on_nhl_id"
+  add_index "skaters", ["nhl_team_id"], name: "index_skaters_on_nhl_team_id"
   add_index "skaters", ["pool_member_id"], name: "index_skaters_on_pool_member_id"
 
 end

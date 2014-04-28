@@ -7,8 +7,10 @@ class LeadersController < ApplicationController
 
   def updateSkaters
 
-    playoff_teams.each do |team|
-      @response = RestClient.get 'http://nhlwc.cdnak.neulion.com/fs1/nhl/league/playerstatsline/20132014/3/' + team + '/iphone/playerstatsline.json'
+    @pool = Pool.find(session[:pool_id])
+
+    @pool.nhl_teams.each do |team|
+      @response = RestClient.get 'http://nhlwc.cdnak.neulion.com/fs1/nhl/league/playerstatsline/20132014/3/' + team.name + '/iphone/playerstatsline.json'
 
       @json_response = ActiveSupport::JSON.decode(@response)
 
@@ -20,9 +22,10 @@ class LeadersController < ApplicationController
           s.pos = @skater_data[1]
           s.goals = @skater_data[4]
           s.assists = @skater_data[5]
-          s.team = team
+          s.team = team.name
+          s.nhl_team_id = team.id
         end
-        @upsertSkater.update(name: @skater_data[2],pos: @skater_data[1],goals: @skater_data[4],assists: @skater_data[5],team: team)
+        @upsertSkater.update(name: @skater_data[2],pos: @skater_data[1],goals: @skater_data[4],assists: @skater_data[5],team: team.name,nhl_team_id: team.id)
       end
 
       @json_response["goalieData"].each do |goalie|
@@ -30,11 +33,12 @@ class LeadersController < ApplicationController
 
         @upsertGoalie = Goalie.find_or_create_by(nhl_id: goalie["id"]) do |g|
           g.name = @goalie_data[2]
-          g.team = team
+          g.team = team.name
           g.wins = @goalie_data[4]
           g.so = @goalie_data[12]
+          g.nhl_team_id = team.id
         end
-        @upsertGoalie.update(name: @goalie_data[2], team: team, wins: @goalie_data[4],so: @goalie_data[12])
+        @upsertGoalie.update(name: @goalie_data[2], team: team.name, wins: @goalie_data[4],so: @goalie_data[12],nhl_team_id: team.id)
       end
 
       @pool_members = Pool.find(session[:pool_id]).pool_members

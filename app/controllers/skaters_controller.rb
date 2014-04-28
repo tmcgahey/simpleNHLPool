@@ -4,7 +4,7 @@ class SkatersController < ApplicationController
   # GET /skaters
   # GET /skaters.json
   def index
-    @skaters = Skater.all
+    @skaters = Skater.joins(:nhl_team).where('nhl_teams.pool_id' => session[:pool_id])
   end
 
   # GET /skaters/1
