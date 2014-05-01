@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140427025038) do
+ActiveRecord::Schema.define(version: 20140428030503) do
 
   create_table "goalies", force: true do |t|
     t.string   "name"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20140427025038) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "nhl_team_id"
+    t.integer  "goals"
+    t.integer  "assists"
   end
 
   add_index "goalies", ["nhl_team_id"], name: "index_goalies_on_nhl_team_id"

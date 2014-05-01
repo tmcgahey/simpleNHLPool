@@ -11,7 +11,7 @@ class PoolMembersController < ApplicationController
   # GET /pool_members/1
   # GET /pool_members/1.json
   def show
-    @skaterNames = Skater.all.map{|x| {label: x.name, value: x.nhl_id, team: x.team}}
+    @skaterNames = Skater.joins(:nhl_team).where('nhl_teams.pool_id' => session[:pool_id]).map{|x| {label: x.name, value: x.id, team: x.team}}
   end
 
   # GET /pool_members/new
@@ -79,7 +79,7 @@ class PoolMembersController < ApplicationController
 
   def addSkater
     @pool_member = PoolMember.find(params[:id])
-    @skater = Skater.find_by(nhl_id: params[:nhlId])
+    @skater = Skater.find(params[:nhlId])
 
     respond_to do |format|
       if @skater.update(pool_member_id: params[:id])
@@ -117,6 +117,6 @@ class PoolMembersController < ApplicationController
     end
 
     def playoff_teams
-      @playoff_teams = ["NONE","DAL","ANA","MTL","TBL","DET","BOS","PHI","NYR","CHI","STL","MIN","COL","LAK","SJS","PIT","CBJ"]
+      @playoff_teams = ["NONE","DAL","ANA","MTL","TB","DET","BOS","PHI","NYR","CHI","STL","MIN","COL","LA","SJ","PIT","CLB"]
     end
 end

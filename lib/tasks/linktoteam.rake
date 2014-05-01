@@ -17,4 +17,32 @@ namespace :nhlpool do
 
   end
 
+  desc "Delete all goalies"
+  task :deleteAllGoaliesAndSkaters => :environment do
+    Goalie.delete_all
+    Skater.delete_all
+  end
+
+  desc "update team names"
+  task :updateTeamNames => :environment do
+    @nhlteam = NhlTeam.find_by(name: 'CBJ')
+    if @nhlteam != nil
+      @nhlteam.update(name: 'CLB')
+    end
+
+    @nhlteam = NhlTeam.find_by(name: 'LAK')
+    if @nhlteam != nil
+      @nhlteam.update(name: 'LA')
+    end
+
+    @nhlteam = NhlTeam.find_by(name: 'SJS')
+    if @nhlteam != nil
+      @nhlteam.update(name: 'SJ')
+    end
+
+    @nhlteam = NhlTeam.find_by(name: 'TBL')
+    if @nhlteam != nil
+      @nhlteam.update(name: 'TB')
+    end
+  end
 end

@@ -75,7 +75,21 @@
   <div class="row">
     <div class="span12">
       <%= bootstrap_flash %>
-      <%= yield %>
+      <% flash.each do |type, message| %>
+          <div class="row">
+            <div class="span4" style="padding-top: 10px;">
+                <%= content_tag(:div,
+                          content_tag(:button, raw("&times;"), :class => "close", "data-dismiss" => "alert") +
+                                  message.html_safe, :class => "alert fade in alert-#{type}") %>
+            </div>
+          </div>
+      <% end %>
+      <div class="row">
+        <div class="span12">
+          <%= yield %>
+        </div>
+      </div>
+
     </div>
   </div><!--/row-->
 

@@ -9,59 +9,70 @@ class LeadersController < ApplicationController
 
     @pool = Pool.find(session[:pool_id])
 
-    @pool.nhl_teams.each do |team|
-      @response = RestClient.get 'http://nhlwc.cdnak.neulion.com/fs1/nhl/league/playerstatsline/20132014/3/' + team.name + '/iphone/playerstatsline.json'
+    @skater_response = RestClient.get 'http://www2.tsn.ca/datafiles/JSON/NHL/NHL_STATS_SKATERS.js?c=1'
+    @skaterData = @skater_response.split('?')[1].gsub!('[]','{"skater"').gsub!(';','}').gsub!("'",'"')
 
-      @json_response = ActiveSupport::JSON.decode(@response)
+    @json_skater = ActiveSupport::JSON.decode(@skaterData)
 
-      @json_response["skaterData"].each do |skater|
-        @skater_data = skater["data"].split(/,/)
+    @json_skater["skater"].each do |skater|
+      if skater[22] == 3
+        @nhlteamid = NhlTeam.find_by(name: skater[2],pool_id: @pool.id).id
 
-        @upsertSkater = Skater.find_or_create_by(nhl_id: skater["id"]) do |s|
-          s.name = @skater_data[2]
-          s.pos = @skater_data[1]
-          s.goals = @skater_data[4]
-          s.assists = @skater_data[5]
-          s.team = team.name
-          s.nhl_team_id = team.id
+        @upsertSkater = Skater.find_or_create_by(name: skater[1],team: skater[2]) do |s|
+          s.name = skater[1]
+          s.pos = skater[0]
+          s.goals = skater[5]
+          s.assists = skater[6]
+          s.team = skater[2]
+          s.nhl_team_id = @nhlteamid
         end
-        @upsertSkater.update(name: @skater_data[2],pos: @skater_data[1],goals: @skater_data[4],assists: @skater_data[5],team: team.name,nhl_team_id: team.id)
+
+        @upsertSkater.update(name: skater[1],pos: skater[0],goals: skater[5],assists: skater[6],team: skater[2],nhl_team_id: @nhlteamid)
+      end
+    end
+
+    @goalie_response = RestClient.get 'http://www2.tsn.ca/datafiles/JSON/NHL/NHL_STATS_GOALIES.js?c=1'
+    @goalieData = @goalie_response.split('?')[1].gsub!('[]','{"goalie"').gsub!(';','}').gsub!("'",'"')
+
+    @json_goalie = ActiveSupport::JSON.decode(@goalieData)
+
+    @json_goalie["goalie"].each do |goalie|
+      if goalie[24] == 3
+        @nhlteamid = NhlTeam.find_by(name: goalie[1],pool_id: @pool.id).id
+
+        @upsertGoalie = Goalie.find_or_create_by(name: goalie[0],team: goalie[1]) do |g|
+          g.name = goalie[0]
+          g.team = goalie[1]
+          g.wins = goalie[10]
+          g.so = goalie[8]
+          g.goals = goalie[16]
+          g.assists = goalie[17]
+          g.nhl_team_id = @nhlteamid
+        end
+
+        @upsertGoalie.update(name: goalie[0], team: goalie[1], wins: goalie[10],so: goalie[8],goals: goalie[16],assists: goalie[17],nhl_team_id: @nhlteamid)
+      end
+    end
+
+    @pool_members = Pool.find(session[:pool_id]).pool_members
+
+    @pool_members.each do |member|
+      if member.goalie1.present?
+        Goalie.where(team: member.goalie1).each do |goalie|
+          goalie.update(pool_member_id: member.id)
+        end
       end
 
-      @json_response["goalieData"].each do |goalie|
-        @goalie_data = goalie["data"].split(/,/)
-
-        @upsertGoalie = Goalie.find_or_create_by(nhl_id: goalie["id"]) do |g|
-          g.name = @goalie_data[2]
-          g.team = team.name
-          g.wins = @goalie_data[4]
-          g.so = @goalie_data[12]
-          g.nhl_team_id = team.id
+      if member.goalie2.present?
+        Goalie.where(team: member.goalie2).each do |goalie|
+          goalie.update(pool_member_id: member.id)
         end
-        @upsertGoalie.update(name: @goalie_data[2], team: team.name, wins: @goalie_data[4],so: @goalie_data[12],nhl_team_id: team.id)
+
       end
-
-      @pool_members = Pool.find(session[:pool_id]).pool_members
-
-      @pool_members.each do |member|
-        if member.goalie1.present?
-          Goalie.where(team: member.goalie1).each do |goalie|
-            goalie.update(pool_member_id: member.id)
-          end
-        end
-
-        if member.goalie2.present?
-          Goalie.where(team: member.goalie2).each do |goalie|
-            goalie.update(pool_member_id: member.id)
-          end
-
-        end
-      end
-
     end
 
     respond_to do |format|
-      format.html { redirect_to leaders_path, notice: "Skater data updated" }
+      format.html { redirect_to leaders_path, :flash => {:success => "Skater data has been updated" }}
       format.json { head :no_content }
     end
 
@@ -73,6 +84,7 @@ class LeadersController < ApplicationController
 
   private
     def playoff_teams
-      @playoff_teams = ["DAL","ANA","MTL","TBL","DET","BOS","PHI","NYR","CHI","STL","MIN","COL","LAK","SJS","PIT","CBJ"]
+      @playoff_teams = ["DAL","ANA","MTL","TB","DET","BOS","PHI","NYR","CHI","STL","MIN","COL","LA","SJ","PIT","CLB"]
     end
 end
+

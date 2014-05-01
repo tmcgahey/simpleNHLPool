@@ -4,7 +4,7 @@ class PoolMember < ActiveRecord::Base
   belongs_to :pool
 
   def total_team_points
-    (skaters.sum(:goals)*2) + skaters.sum(:assists) + (goalie.sum(:wins)*2) + (goalie.sum(:so)*3)
+    (skaters.sum(:goals)*2) + skaters.sum(:assists) + (goalie.sum(:wins)*2) + (goalie.sum(:so)*3) + (goalie.sum(:goals)*2) + goalie.sum(:assists)
   end
 
   def remaining_players

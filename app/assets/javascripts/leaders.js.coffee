@@ -21,6 +21,6 @@ $ ->
     "bPaginate": false,
     "bInfo": false,
     "bFilter": false,
-    "aaSorting": [[4, "desc"]]
+    "aaSorting": [[6, "desc"]]
   });
 
