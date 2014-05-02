@@ -3,10 +3,10 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-  availableSkaters = $('#skaters').data('url');
 
   if($('#skaterSearch'))
-    $('#skaterSearch').autocomplete({
+    availableSkaters = $('#skaters').data('url');
+    ac = $('#skaterSearch').autocomplete({
       minLength: 0,
       source: availableSkaters,
       focus: (event, ui) ->
@@ -17,5 +17,9 @@ $ ->
         $('#skaterSearch').val(ui.item.label);
         $('#nhlId').val(ui.item.value);
         return false;
-    }).data('ui-autocomplete')._renderItem = (ul, item) ->
-      return $('<li>').append('<a>' + item.label + ' - ' + item.team + '</a>').appendTo(ul);
+    })
+
+    if(ac)
+      if(ac.data('ui-autocomplete'))
+        ac.data('ui-autocomplete')._renderItem = (ul, item) ->
+          return $('<li>').append('<a>' + item.label + ' - ' + item.team + '</a>').appendTo(ul);
