@@ -1,45 +1,54 @@
-<div class="page-header">
-  <h1>Leader Board</h1>
-</div>
-<div class="span8">
 
-    <table id="leaderTable" class="table table-striped">
-      <thead>
-      <tr>
-        <th>Rank</th>
-        <th>Name</th>
-        <th>Goals</th>
-        <th>Assists</th>
-        <th>Wins</th>
-        <th>Shutouts</th>
-        <th>Players Remaining</th>
-        <th>Total</th>
-        <th></th>
-      </tr>
-      </thead>
-
-      <tbody>
-      <% @sorted_pool_members.each_with_index do |pool_member,index| %>
+<div class="row">
+    <div class="span8 page-header">
+      <h1>Leader Board</h1>
+    </div>
+    <div class="span8">
+        <table id="leaderTable" class="table table-striped">
+          <thead>
           <tr>
-            <td><%= index+1 %></td>
-            <td><%= pool_member.name %></td>
-            <td><%= pool_member.skaters.sum("goals") %></td>
-            <td><%= pool_member.skaters.sum("assists") %></td>
-            <td><%= pool_member.goalie.sum("wins") %></td>
-            <td><%= pool_member.goalie.sum("so") %></td>
-            <td><%= pool_member.remaining_players %></td>
-            <td><%= pool_member.total_team_points %></td>
-            <td><%= link_to "Details", leader_path(pool_member), :class => 'btn btn-default' %></td>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Goals</th>
+            <th>Assists</th>
+            <th>Wins</th>
+            <th>Shutouts</th>
+            <th>Players Remaining</th>
+            <th>Total</th>
+            <th></th>
           </tr>
-      <% end %>
-      </tbody>
-    </table>
-</div>
-<div class="span8">
-  <p>I'll try to make this automatically happen every hour.</p>
-  <%= button_to 'Refresh Player Stats', action: "updateSkaters" %>
-</div>
+          </thead>
 
+          <tbody>
+          <% @sorted_pool_members.each_with_index do |pool_member,index| %>
+              <tr>
+                <td><%= index+1 %></td>
+                <td><%= pool_member.name %></td>
+                <td><%= pool_member.total_goals %></td>
+                <td><%= pool_member.total_assists %></td>
+                <td><%= pool_member.goalie.sum("wins") %></td>
+                <td><%= pool_member.goalie.sum("so") %></td>
+                <td><%= pool_member.remaining_players %></td>
+                <td><%= pool_member.total_team_points %></td>
+                <td><%= link_to "Details", leader_path(pool_member), :class => 'btn btn-default' %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+  <div  class="span7 alert alert-info">
+    <strong>Goalie stats now include goals and assists</strong>
+  </div >
+</div>
+<div class="row">
+    <div class="span8">
+      <p>I'll try to make this automatically happen every hour.</p>
+      <%= button_to 'Refresh Player Stats', action: "updateSkaters" %>
+    </div>
+
+</div>
 
 
 

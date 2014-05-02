@@ -7,6 +7,14 @@ class PoolMember < ActiveRecord::Base
     (skaters.sum(:goals)*2) + skaters.sum(:assists) + (goalie.sum(:wins)*2) + (goalie.sum(:so)*3) + (goalie.sum(:goals)*2) + goalie.sum(:assists)
   end
 
+  def total_goals
+    skaters.sum(:goals) + goalie.sum(:goals)
+  end
+
+  def total_assists
+    skaters.sum(:assists) + goalie.sum(:assists)
+  end
+
   def remaining_players
     @remainingSkaters = Skater.joins(:nhl_team).where('nhl_teams.active' => true,'skaters.pool_member_id' => self.id).count
     @remainingGoalies = Goalie.joins(:nhl_team).where('nhl_teams.active' => true,'goalies.pool_member_id' => self.id).count

@@ -10,6 +10,8 @@
           <th>Team</th>
           <th>Wins</th>
           <th>So</th>
+          <th>Goals</th>
+          <th>Assists</th>
           <th>Total Points</th>
           <th>Pool member</th>
         </tr>
@@ -22,6 +24,8 @@
             <td><%= goalie.team %></td>
             <td><%= goalie.wins %></td>
             <td><%= goalie.so %></td>
+            <td><%= goalie.goals %></td>
+            <td><%= goalie.assists %></td>
             <td><%= goalie.total_points %></td>
             <td><%= goalie.pool_member.name if goalie.pool_member %></td>
           </tr>
