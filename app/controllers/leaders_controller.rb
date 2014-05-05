@@ -79,6 +79,7 @@ class LeadersController < ApplicationController
   end
 
   def show
+    @pool_members = Pool.find(session[:pool_id]).pool_members
     @pool_member = PoolMember.find(params[:id])
   end
 

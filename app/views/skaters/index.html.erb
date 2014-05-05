@@ -1,22 +1,23 @@
 <%- model_class = Skater -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
-</div>
-<div class="span8">
+<div class="row">
+  <div class="col-md-8 page-header">
+    <h2><%= t '.title', :default => model_class.model_name.human.pluralize.titleize %></h2>
+  </div>
+  <div class="col-md-8">
     <table id="allSkatersTable" class="table table-striped">
       <thead>
-        <tr>
-          <th><%= model_class.human_attribute_name(:name) %></th>
-          <th><%= model_class.human_attribute_name(:team) %></th>
-          <th><%= model_class.human_attribute_name(:pos) %></th>
-          <th><%= model_class.human_attribute_name(:goals) %></th>
-          <th><%= model_class.human_attribute_name(:assists) %></th>
-          <th>Total Points</th>
-          <th><%= model_class.human_attribute_name(:pool_member_id) %></th>
-        </tr>
+      <tr>
+        <th><%= model_class.human_attribute_name(:name) %></th>
+        <th><%= model_class.human_attribute_name(:team) %></th>
+        <th><%= model_class.human_attribute_name(:pos) %></th>
+        <th><%= model_class.human_attribute_name(:goals) %></th>
+        <th><%= model_class.human_attribute_name(:assists) %></th>
+        <th>Total Points</th>
+        <th><%= model_class.human_attribute_name(:pool_member_id) %></th>
+      </tr>
       </thead>
       <tbody>
-        <% @skaters.each do |skater| %>
+      <% @skaters.each do |skater| %>
           <tr>
             <td><%= skater.name %></td>
             <td><%= skater.team %></td>
@@ -26,8 +27,9 @@
             <td><%= skater.total_points %></td>
             <td><%= skater.pool_member.name if skater.pool_member %></td>
           </tr>
-        <% end %>
+      <% end %>
       </tbody>
     </table>
-</div>
+  </div>
 
+</div>

@@ -4,6 +4,7 @@ class GoaliesController < ApplicationController
   # GET /goalies
   # GET /goalies.json
   def index
+    @pool_members = Pool.find(session[:pool_id]).pool_members
     @goalies = Goalie.joins(:nhl_team).where('nhl_teams.pool_id' => session[:pool_id])
   end
 

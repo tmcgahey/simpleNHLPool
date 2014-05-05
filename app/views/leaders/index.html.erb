@@ -1,9 +1,9 @@
 
 <div class="row">
-    <div class="span8 page-header">
-      <h1>Leader Board</h1>
+    <div class="col-md-8 page-header">
+      <h2>Leader Board</h2>
     </div>
-    <div class="span8">
+    <div class="col-md-8">
         <table id="leaderTable" class="table table-striped">
           <thead>
           <tr>
@@ -38,14 +38,16 @@
     </div>
 </div>
 <div class="row">
-  <div  class="span7 alert alert-info">
+  <div  class="col-md-4 alert alert-info">
     <strong>Goalie stats now include goals and assists</strong>
   </div >
 </div>
 <div class="row">
-    <div class="span8">
-      <p>I'll try to make this automatically happen every hour.</p>
-      <%= button_to 'Refresh Player Stats', action: "updateSkaters" %>
+    <div class="col-md-8 well">
+      <strong>I'll try to make this automatically happen every hour.</strong>
+      <div class="pull-right">
+        <%= link_to "Refresh Player Stats", updateSkaters_leaders_path,method: :post, :class => 'btn btn-success' %>
+      </div>
     </div>
 
 </div>
