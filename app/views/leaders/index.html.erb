@@ -4,15 +4,15 @@
       <h2>Leader Board</h2>
     </div>
     <div class="col-md-8">
-        <table id="leaderTable" class="table table-striped">
+        <table id="leaderTable" class="table table-striped table-condensed">
           <thead>
           <tr>
             <th>Rank</th>
             <th>Name</th>
-            <th>Goals</th>
-            <th>Assists</th>
-            <th>Wins</th>
-            <th>Shutouts</th>
+            <th class="hidden-xs">Goals</th>
+            <th class="hidden-xs">Assists</th>
+            <th class="hidden-xs">Wins</th>
+            <th class="hidden-xs">Shutouts</th>
             <th>Players Remaining</th>
             <th>Total</th>
             <th></th>
@@ -24,13 +24,13 @@
               <tr>
                 <td><%= index+1 %></td>
                 <td><%= pool_member.name %></td>
-                <td><%= pool_member.total_goals %></td>
-                <td><%= pool_member.total_assists %></td>
-                <td><%= pool_member.goalie.sum("wins") %></td>
-                <td><%= pool_member.goalie.sum("so") %></td>
+                <td class="hidden-xs"><%= pool_member.total_goals %></td>
+                <td class="hidden-xs"><%= pool_member.total_assists %></td>
+                <td class="hidden-xs"><%= pool_member.goalie.sum("wins") %></td>
+                <td class="hidden-xs"><%= pool_member.goalie.sum("so") %></td>
                 <td><%= pool_member.remaining_players %></td>
                 <td><%= pool_member.total_team_points %></td>
-                <td><%= link_to "Details", leader_path(pool_member), :class => 'btn btn-default' %></td>
+                <td><%= link_to "Details", leader_path(pool_member), :class => 'btn btn-default btn-sm' %></td>
               </tr>
           <% end %>
           </tbody>
@@ -38,15 +38,16 @@
     </div>
 </div>
 <div class="row">
-  <div  class="col-md-4 alert alert-info">
-    <strong>Goalie stats now include goals and assists</strong>
-  </div >
-</div>
-<div class="row">
-    <div class="col-md-8 well">
-      <strong>I'll try to make this automatically happen every hour.</strong>
-      <div class="pull-right">
-        <%= link_to "Refresh Player Stats", updateSkaters_leaders_path,method: :post, :class => 'btn btn-success' %>
+    <div class="col-md-5 well">
+      <div class="row">
+        <div class="col-md-12">
+            <strong>I'll try to make this automatically happen every hour.</strong>
+        </div>
+      </div>
+      <div class="row" style="padding-top: 5px;">
+        <div class="col-md-5">
+            <%= link_to "Refresh Player Stats", updateSkaters_leaders_path,method: :post, :class => 'btn btn-success' %>
+        </div>
       </div>
     </div>
 

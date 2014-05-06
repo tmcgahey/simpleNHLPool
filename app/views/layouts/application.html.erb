@@ -43,7 +43,7 @@
       <a class="navbar-brand" href="/">NHL Pool</a>
     </div>
     <div class="collapse navbar-collapse">
-      <% if params[:controller] != 'nhl_pool' %>
+      <% if params[:controller] == 'leaders' || params[:controller] == 'skaters' || params[:controller] == 'goalies' %>
           <ul class="nav navbar-nav">
             <li><%= link_to "Leader Board", leaders_path  %></li>
             <li class="dropdown">
