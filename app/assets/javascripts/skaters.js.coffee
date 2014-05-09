@@ -4,7 +4,7 @@
 
 $ ->
   $('#allSkatersTable').dataTable({
-    "bPaginate": false,
+    "bPaginate": true,
     "bInfo": false,
     "bFilter": true,
     "aaSorting": [[5, "desc"]]
