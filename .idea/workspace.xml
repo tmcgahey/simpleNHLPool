@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="657e2c5a-cece-4380-b3ff-e7654396e36b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20140510022752_add_last_update_to_pool.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/leaders/index.html.erb" afterPath="$PROJECT_DIR$/app/views/leaders/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pools/index.html.erb" afterPath="$PROJECT_DIR$/app/views/pools/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/leaders_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/leaders_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/tasks/linktoteam.rake" afterPath="$PROJECT_DIR$/lib/tasks/linktoteam.rake" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/pools_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/pools_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="NhlPool.iws" />
@@ -50,8 +43,8 @@
       <file leaf-file-name="index.html.erb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/leaders/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.1520146" vertical-offset="357" max-vertical-offset="1326">
-              <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.9029304" vertical-offset="357" max-vertical-offset="1207">
+              <caret line="50" column="25" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -764,7 +757,11 @@
       <created>1399600580260</created>
       <updated>1399600580260</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Automatic updates">
+      <created>1399692720769</created>
+      <updated>1399692720769</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TodoView" selected-index="3">
@@ -827,7 +824,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="can retrieve skater data" />
     <MESSAGE value="added upsert for skaters" />
     <MESSAGE value="Added link to details" />
     <MESSAGE value="changing pool members to nested resource" />
@@ -852,7 +848,8 @@
     <MESSAGE value="adding goalie goals and assists" />
     <MESSAGE value="Adding standard bootstrap" />
     <MESSAGE value="Some CSS changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Some CSS changes" />
+    <MESSAGE value="Automatic updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="Automatic updates" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1247,8 +1244,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/leaders/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1520146" vertical-offset="357" max-vertical-offset="1326">
-          <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.9029304" vertical-offset="357" max-vertical-offset="1207">
+          <caret line="50" column="25" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
           <folding />
         </state>
       </provider>
