@@ -4,16 +4,14 @@ Rails.application.routes.draw do
   get 'nhl_pool/search'
   get '/search', controller: 'nhl_pool', action: 'search'
 
-  resources :leaders do
-    collection do
-      post 'updateSkaters'
-    end
-  end
-
+  resources :leaders
   resources :skaters
   resources :goalies
 
   resources :pools do
+    collection do
+      post 'updateSkaters'
+    end
     resources :nhl_teams
     resources :pool_members do
       collection do

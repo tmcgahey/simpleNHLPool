@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Last Update</th>
       <th colspan="4"></th>
     </tr>
   </thead>
@@ -12,6 +13,7 @@
     <% @pools.each do |pool| %>
       <tr>
         <td><%= pool.name %></td>
+        <td><%= pool.last_update.in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%Y %I:%M %p") %></td>
         <td><%= link_to 'Show', pool %></td>
         <td><%= link_to 'Edit', edit_pool_path(pool) %></td>
         <td><%= link_to 'Destroy', pool, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -20,7 +22,16 @@
     <% end %>
   </tbody>
 </table>
-
+<div class="row">
+<p>
+<div class="col-md-9">
+<strong>I'll try to make this automatically happen every hour.</strong>
+</div>
+<div class="col-md-3">
+<%= link_to "Refresh Player Stats", updateSkaters_pools_path, method: :post, :class => 'btn btn-success' %>
+</div>
+</p>
+</div>
 <br>
 
 <%= link_to 'New Pool', new_pool_path %>

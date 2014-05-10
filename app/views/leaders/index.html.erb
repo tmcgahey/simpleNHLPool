@@ -43,14 +43,21 @@
 
       <div class="panel-footer" style="margin-top: 10px;">
         <div class="row">
-          <p>
-          <div class="col-md-9">
-            <strong>I'll try to make this automatically happen every hour.</strong>
+          <div class="col-md-12">
+            <h5 class="pull-right">
+                Player statistics last updated at:
+                <strong>
+                    <%= @pool.last_update.in_time_zone("Eastern Time (US & Canada)").strftime("%m/%d/%Y %I:%M %p") %>
+                </strong>
+            </h5>
           </div>
-          <div class="col-md-3">
-            <%= link_to "Refresh Player Stats", updateSkaters_leaders_path, method: :post, :class => 'btn btn-success' %>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <h6 class="pull-right">
+              (Statistics should automatically update every 12 hours)
+            </h6>
           </div>
-          </p>
         </div>
       </div>
 
