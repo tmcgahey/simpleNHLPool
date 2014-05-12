@@ -1,4 +1,5 @@
 class NhlTeamsController < ApplicationController
+  skip_before_filter :require_pool
   before_action :set_pool
   before_action :set_nhl_team, only: [:show, :edit, :update, :destroy]
 

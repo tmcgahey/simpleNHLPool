@@ -1,4 +1,5 @@
 class PoolMembersController < ApplicationController
+  skip_before_filter :require_pool
   before_action :set_pool
   before_action :set_pool_member, only: [:show, :edit, :update, :destroy]
 

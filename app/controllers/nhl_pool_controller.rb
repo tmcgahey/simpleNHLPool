@@ -1,4 +1,6 @@
 class NhlPoolController < ApplicationController
+  skip_before_filter :require_pool
+
   def index
     @hideAllStats = true
   end

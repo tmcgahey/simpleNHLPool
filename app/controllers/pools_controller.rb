@@ -1,4 +1,5 @@
 class PoolsController < ApplicationController
+  skip_before_filter :require_pool
   before_action :set_pool, only: [:show, :edit, :update, :destroy]
 
   # GET /pools
