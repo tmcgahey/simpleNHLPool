@@ -1,5 +1,29 @@
-<h1>New pool member for <%= @pool.name %></h1>
+<div class="row hidden-xs">
+  <div class="col-md-12"><p></p></div>
+</div>
+<div class="row">
+  <div class="col-md-10">
+    <div class="panel panel-default">
+      <div class="panel-heading" style="margin-bottom: 10px;">
+        <h3>New pool member for <%= @pool.name %></h3>
+      </div>
+      <%= render 'form' %>
 
-<%= render 'form' %>
+      <div class="panel-footer" style="margin-top: 10px;">
+        <div class="row">
+          <div class="col-md-12">
+            <p class="pull-right">
+              <%= link_to 'Back', pool_pool_members_path %>
+            </p>
+          </div>
+        </div>
+      </div>
 
-<%= link_to 'Back', pool_pool_members_path %>
+    </div>
+  </div>
+</div>
+
+
+
+
+

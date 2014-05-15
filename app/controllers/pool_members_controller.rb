@@ -17,6 +17,7 @@ class PoolMembersController < ApplicationController
 
   # GET /pool_members/new
   def new
+    @playoff_teams = playoff_teams.map{ |team| [team, team] }
     @pool_member = @pool.pool_members.new
   end
 

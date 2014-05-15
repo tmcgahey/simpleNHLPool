@@ -17,9 +17,19 @@ class PoolMember < ActiveRecord::Base
 
   def remaining_players
     @remainingSkaters = Skater.joins(:nhl_team).where('nhl_teams.active' => true,'skaters.pool_member_id' => self.id).count
-    @remainingGoalies = Goalie.joins(:nhl_team).where('nhl_teams.active' => true,'goalies.pool_member_id' => self.id).count
 
-    @remainingSkaters + @remainingGoalies
+    @team1 = NhlTeam.find_by(name: self.goalie1, pool_id: self.pool.id)
+    @team2 = NhlTeam.find_by(name: self.goalie2, pool_id: self.pool.id)
+
+    if(@team1 && @team1.active)
+      @remainingSkaters += 1
+    end
+
+    if(@team2 && @team2.active)
+      @remainingSkaters += 1
+    end
+
+    @remainingSkaters
   end
 
 end

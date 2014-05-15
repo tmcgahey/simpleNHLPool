@@ -1,30 +1,54 @@
-<h1>Pool Name: <%= @pool.name %></h1>
+<div class="row hidden-xs">
+  <div class="col-md-12"><p></p></div>
+</div>
+<div class="row">
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Goalie 1</th>
-      <th>Goalie 2</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div class="col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading" style="margin-bottom: 10px;">
+        <h3>Pool Name: <%= @pool.name %></h3>
+      </div>
 
-  <tbody>
-    <% @pool_members.each do |pool_member| %>
-      <tr>
-        <td><%= pool_member.name %></td>
-        <td><%= pool_member.goalie1 %></td>
-        <td><%= pool_member.goalie2 %></td>
-        <td><%= link_to 'Show', pool_pool_member_path(pool_member.pool,pool_member) %></td>
-        <td><%= link_to 'Edit', edit_pool_pool_member_path(pool_member.pool,pool_member) %></td>
-        <td><%= link_to 'Destroy', pool_pool_member_path(pool_member.pool,pool_member), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <table class="table table-striped table-condensed">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Goalie 1</th>
+          <th>Goalie 2</th>
+          <th colspan="3"></th>
+        </tr>
+        </thead>
 
-<br>
+        <tbody>
+        <% @pool_members.each do |pool_member| %>
+            <tr>
+              <td><%= pool_member.name %></td>
+              <td><%= pool_member.goalie1 %></td>
+              <td><%= pool_member.goalie2 %></td>
+              <td><%= link_to 'Show', pool_pool_member_path(pool_member.pool,pool_member) %></td>
+              <td><%= link_to 'Edit', edit_pool_pool_member_path(pool_member.pool,pool_member) %></td>
+              <td><%= link_to 'Destroy', pool_pool_member_path(pool_member.pool,pool_member), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
 
-<%= link_to 'New Pool member', new_pool_pool_member_path %>
-<%= link_to 'Back to Pools', pools_path %>
+      <div class="panel-footer" style="margin-top: 10px;">
+        <div class="row">
+          <div class="col-md-12">
+            <%= link_to 'New Pool member', new_pool_pool_member_path %>
+            <p class="pull-right">
+                <%= link_to 'Back to Pools', pools_path %>
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
