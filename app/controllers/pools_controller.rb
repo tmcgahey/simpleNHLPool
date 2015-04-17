@@ -75,7 +75,7 @@ class PoolsController < ApplicationController
       if skater[22] == 3
         @nhlteamid = NhlTeam.find_by(name: skater[2],pool_id: @pool.id).id
 
-        @upsertSkater = Skater.find_or_create_by(name: skater[1],team: skater[2]) do |s|
+        @upsertSkater = Skater.find_or_create_by(name: skater[1],team: skater[2], nhl_team_id: @nhlteamid) do |s|
           s.name = skater[1]
           s.pos = skater[0]
           s.goals = skater[5]
@@ -97,7 +97,7 @@ class PoolsController < ApplicationController
       if goalie[24] == 3
         @nhlteamid = NhlTeam.find_by(name: goalie[1],pool_id: @pool.id).id
 
-        @upsertGoalie = Goalie.find_or_create_by(name: goalie[0],team: goalie[1]) do |g|
+        @upsertGoalie = Goalie.find_or_create_by(name: goalie[0],team: goalie[1], nhl_team_id: @nhlteamid) do |g|
           g.name = goalie[0]
           g.team = goalie[1]
           g.wins = goalie[10]
